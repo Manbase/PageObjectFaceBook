@@ -12,8 +12,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class Basic {
+	static Properties	p = new Properties();
+	static WebDriver driver;
 	
 	public static void main(String[] args) throws IOException {
+		
 		FileInputStream fileInputStream = new FileInputStream
 				(new File("src\\data\\config.properties"));
 
@@ -61,8 +64,7 @@ public class Basic {
 			
 		}
 	
-	static Properties	p = new Properties();
-	static WebDriver driver;
+	
 	}
 
 
