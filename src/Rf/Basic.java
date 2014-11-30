@@ -6,9 +6,18 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
 public class Basic {
 	
 	public static void main(String[] args) throws IOException {
+		FileInputStream fileInputStream = new FileInputStream
+				(new File("src\\data\\config.properties"));
+
+		p.load(fileInputStream);
 		
 		/*String s[] = {"Bashar","Bishow","Kamolesh", "Bimal","Hamid"};
 		
@@ -17,37 +26,43 @@ public class Basic {
 		}*/
 		
 		
-		
-		switch (p.getProperty("browser")) {
+		String s = p.getProperty("browser");
+		switch (s) {
 		
 		case "Firefox":
-			System.out.println("your age is 0" );
+			driver = new FirefoxDriver();
 			break;
 			
 		case "Chrome":
-			System.out.println("your age is 1" );
+			System.setProperty("webdriver.chrome.driver", "C:\\Dev\\driver/chromedriver.exe");
+			driver = new ChromeDriver();
 			break;
 			
 		case "IE":
-			System.out.println("your age is 2" );
+			System.setProperty("webdriver.ie.driver", "C:\\Dev\\driver/IEDriverServer.exe");
+
+			driver = new InternetExplorerDriver();
 			break;
 		default:
-			System.out.println("you are not born yet");
+			driver = new FirefoxDriver();
 			break;
 		}
 		//properties read
 		
 			
 
-			FileInputStream fileInputStream = new FileInputStream
-					(new File("src\\data\\config.properties"));
-
-			p.load(fileInputStream);
+			
 			
 			System.out.println(p.getProperty("browser"));
+			
+			
+			
+			driver.get("http://www.google.com");
+			
 		}
 	
 	static Properties	p = new Properties();
+	static WebDriver driver;
 	}
 
 
